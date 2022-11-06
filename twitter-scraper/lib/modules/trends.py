@@ -1,7 +1,8 @@
+import sys
 from requests_html import HTML, HTMLSession
 
 session = HTMLSession()
-
+get_trends()
 
 def get_trends():
     trends = []
