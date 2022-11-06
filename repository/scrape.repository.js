@@ -1,5 +1,6 @@
-const {connect} = require('../config/db.config');
-const logger    = require('../logger/api.logger');
+const {connect}   = require('../config/db.config');
+const PythonShell = require('python-shell').PythonShell;
+const logger      = require('../logger/api.logger');
 
 
 
@@ -9,23 +10,56 @@ class TweetRepository {
 
 
 	constructor() {
-		this.db    = connect();
-		this.spawn = require('child_process').spawn;
+		this.db      = connect();
+		this.shell   = null;
+		this.options = {
+			mode:          'json',
+			pythonPath:    'python',
+			pythonOptions: ['-u'],
+			scriptPath:    'twitter-scraper/lib/modules',
+			args:          ['value1', 'value2', 'value3']
+		};
 	}
 
 
 	async getTweets() {
 		return new Promise((resolve, reject) => {
-			const scraperProcess_Tweets = this.spawn('python', ['twitter-scraper/lib/modules/tweets.py']);
-			scraperProcess_Tweets.stdout.on('data', (data) => {
-				resolve(data);
+			this.options.args = [];
+			this.shell        = PythonShell.run("tweets.py", this.options);
+			this.shell.on('message', (message) => {
+				resolve(message);
 			});
+			this.shell.end((err, code, signal) => {
+				if (err) {
+					logger.error(err);
+					reject(err);
+				}
+				logger.info(`The exit code was: ${code}`);
+				logger.info(`The exit signal was: ${signal}`);
+			});
+
 		});
 	}
 
 
+	async queryTweet(args) {
+		return new Promise((resolve, reject) => {
+			this.options.args = [args];
+			this.shell        = PythonShell.run("tweets.py", this.options);
+			this.shell.on('message', (message) => {
+				resolve(message);
+			});
+			this.shell.end((err, code, signal) => {
+				if (err) {
+					logger.error(err);
+					reject(err);
+				}
+				logger.info(`The exit code was: ${code}`);
+				logger.info(`The exit signal was: ${signal}`);
+			});
 
-	async queryTweet(tweet) {}
+		});
+	}
 
 
 	async updateTweets(tweet) {}
@@ -42,22 +76,55 @@ class TrendRepository {
 
 
 	constructor() {
-		this.db    = connect();
-		this.spawn = require('child_process').spawn;
+		this.db      = connect();
+		this.shell   = null;
+		this.options = {
+			mode:          'json',
+			pythonPath:    'python',
+			pythonOptions: ['-u'],
+			scriptPath:    'twitter-scraper/lib/modules',
+			args:          ['value1', 'value2', 'value3']
+		}
 	}
 
 
 	async getTrends() {
 		return new Promise((resolve, reject) => {
-			const scraperProcess_Trends = this.spawn('python', ['twitter-scraper/lib/modules/trends.py']);
-			scraperProcess_Trends.stdout.on('data', (data) => {
-				resolve(data);
+			this.options.args = [];
+			this.shell        = PythonShell.run('trends.py', this.options);
+			this.shell.on('message', (message) => {
+				resolve(message);
+			});
+			this.shell.end((err, code, signal) => {
+				if (err) {
+					logger.error(err);
+					reject(err);
+				}
+				logger.info(`The exit code was: ${code}`);
+				logger.info(`The exit signal was: ${signal}`);
 			});
 		});
 	}
 
 
-	async queryTrend(trend) {}
+	async queryTrend(args) {
+		return new Promise((resolve, reject) => {
+			this.options.args = [args];
+			this.shell        = PythonShell.run("trends.py", this.options);
+			this.shell.on('message', (message) => {
+				resolve(message);
+			});
+			this.shell.end((err, code, signal) => {
+				if (err) {
+					logger.error(err);
+					reject(err);
+				}
+				logger.info(`The exit code was: ${code}`);
+				logger.info(`The exit signal was: ${signal}`);
+			});
+
+		});
+	}
 
 
 	async updateTrends(trend) {}
