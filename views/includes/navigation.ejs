@@ -1,33 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#283541;">
     <% if(route && route === "tweets") { %>
-        <img src="../../img/searchicon.png" class="searchicon navbar-brand" alt="searchicon">
-        <form class="searchForm" name="navSearch" method="post" action="/tweets/search">
-            <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a phrase or statement" aria-label="Search">
-            <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <img src="../../img/search-icon.png" class="search-icon navbar-brand" alt="search-icon">
+        <form class="search-form" name="nav-search" method="post" action="/tweets/search">
+            <input class="form-control-sm nav-search" type="search" name="nav-search" placeholder="Enter a phrase or statement" aria-label="Search">
+            <button class="nav-searchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
     <% } else if(route && route === "users") { %>
-        <img src="../../img/searchicon.png" class="searchicon" alt="searchicon">
-        <form class="searchForm" name="navSearch" method="post" action="/users/search">
-            <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a username" aria-label="Search">
-            <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <img src="../../img/search-icon.png" class="search-icon" alt="search-icon">
+        <form class="search-form" name="nav-search" method="post" action="/users/search">
+            <input class="form-control-sm nav-search" type="search" name="nav-search" placeholder="Enter a username" aria-label="Search">
+            <button class="nav-searchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
     <% } else if(route && route === "trends") { %>
-        <img src="../../img/searchicon.png" class="searchicon" alt="searchicon">
-        <form class="searchForm" name="navSearch" method="post" action="/trends/search">
-            <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a trending subject" aria-label="Search">
-            <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <img src="../../img/search-icon.png" class="search-icon" alt="search-icon">
+        <form class="search-form" name="nav-search" method="post" action="/trends/search">
+            <input class="form-control-sm nav-search" type="search" name="nav-search" placeholder="Enter a trending subject" aria-label="Search">
+            <button class="nav-searchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
     <% } else if(route === "home") { %>
-        <img src="../../img/searchicon.png" class="searchicon" alt="searchicon">
-        <form class="searchForm" name="navSearch" method="post" action="/all/search">
-            <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a phrase or statement" aria-label="Search">
-            <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <img src="../../img/search-icon.png" class="search-icon" alt="search-icon">
+        <form class="search-form" name="nav-search" method="post" action="/all/search">
+            <input class="form-control-sm nav-search" type="search" name="nav-search" placeholder="Enter a phrase or statement" aria-label="Search">
+            <button class="nav-searchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
     <% } else { %>
-        <img src="../../img/searchicon.png" class="searchicon" alt="searchicon">
-        <form class="searchForm" name="navSearch" method="post" action="/all/search">
-            <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a phrase or statement" aria-label="Search">
-            <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <img src="../../img/search-icon.png" class="search-icon" alt="search-icon">
+        <form class="search-form" name="nav-search" method="post" action="/all/search">
+            <input class="form-control-sm nav-search" type="search" name="nav-search" placeholder="Enter a phrase or statement" aria-label="Search">
+            <button class="nav-searchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
     <% } %>
 

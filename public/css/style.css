@@ -24,7 +24,7 @@
 
 
 
-.navbar .searchicon {
+.navbar .search-icon {
     color   : #000;
     display : inline-block;
     width   : 1em;
@@ -33,15 +33,28 @@
 }
 
 
+.search-form {
+    display         : none;
+    position        : absolute;
+    top             : 100%;
+    left            : 0;
+    right           : 0;
+    background-color: #fff;
+    padding         : 1em;
+    border-radius   : 0 0 5px 5px;
+    box-shadow      : 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index         : 9999;
+}
 
-.searchicon {
+
+.search-icon {
     color  : #fff;
     cursor : pointer;
 }
 
 
 
-.navbar .navSearch {
+.navbar .nav-search {
     width : content-box;
 }
 
@@ -62,23 +75,24 @@
 
 .container-body {
     margin-top : 5em;
+
 }
 
 
 
 .tweet-card-container {
     font-size     : 1em;
-    overflow      : hidden;
     padding       : 0;
+    overflow      : hidden;
     border        : none;
-    border-radius : .28571429rem;
-    box-shadow    : 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    border-radius : .2850rem;
+    box-shadow    : 0 1px 3px 0 #c8c8e7, 0 0 0 1px #c7c7cb;
 }
 
 
 
 .tweet-card-inverse {
-    background-color : #fff;
+    background-color : #c8c8e7;
     color            : #000;
 }
 

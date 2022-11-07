@@ -15,6 +15,9 @@ case 'home': %>
 <% case 'users': %>
 <%- include('includes/navigation', {route: "users"}); %>
 <% break; %>
+<% default: %>
+<%- include('includes/navigation', {route: null}); %>
+<% break; %>
 <% } %>
 
 
@@ -27,17 +30,22 @@ case 'home': %>
             </div>
         </div>
 
-        <% if (contents.length === 0) { %>
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="/search" method="POST">
-                        <div class="form-group">
-                            <label for="search">Search</label>
-                            <input type="text" class="form-control" id="search" name="search" placeholder="Enter a search term">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+        <% if (toRoute === "home") { %>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary">Config</button>
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Search Parameters</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Tweets</a>
+                        <a class="dropdown-item" href="#">User Accounts</a>
+                        <a class="dropdown-item" href="#">Round Robin</a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
                 </div>
+                <input class="form-control nav-search" type="text" name="nav-search" placeholder="Enter a phrase or statement" aria-label="Search">
             </div>
         <% } else { %>
             <% if (contents.role === 'users') { %>

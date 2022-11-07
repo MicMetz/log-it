@@ -47,25 +47,18 @@ app.use(session({
 }))
 
 
-// app.use((req, res, next) => {
-//     // if(req.session.user) {
-//     //     app.locals.role = req.session.user.role;
-//     //     next();
-//     // } else {
-//     //     app.locals.isLoggedIn = false;
-//     //     app.locals.role = null;
-//     //     next();
-//     // }
-//     // TODO:
-//     app.locals.role = null;
-// });
+app.use((req, res, next) => {
+    app.locals.route = "";
+    app.locals.role = null;
+});
 
 
 app.get('/', (req, res, next) => {
     var tweets = null;
     var trends = null;
-    var contents = [[], {roles: ""}];
+    var contents = [[], {role: null}];
     var toRoute = "home";
+    app.locals.route = "home";
 
 
     const testTweet = [new User(1, "@JohnnySins", 5, "/img/derpp_640.jpg", "/img/bg1.jpg", 5, 100),
@@ -73,10 +66,10 @@ app.get('/', (req, res, next) => {
                        new User(3, "@MiaKhalifa", 5, "/img/human-5276040_960_720.jpg", "/img/bg3.jpg", 5, 100)
     ];
 
-    testTweet.forEach((tweet, index = 0) => {
-        contents[index] = tweet;
-    });
-    contents.roles = "users";
+    // testTweet.forEach((tweet, index = 0) => {
+    //     contents[index] = tweet;
+    // });
+    // contents.roles = "users";
 
     const testExecution = () => {
 
@@ -92,7 +85,8 @@ app.get('/', (req, res, next) => {
         console.log(trends);
     }
 
-    res.render('index', {contents, toRoute});
+    // res.render('index', {contents, toRoute});
+    res.render('index', {contents, toRoute: "home"});
     // res.render('index');
 });
 
@@ -108,16 +102,13 @@ app.get('/tweets', (req, res, next) => {
 
 
 app.use((req, res, next) => {
-    res.render('error404', {route: null});
+
+    res.render('error404', {toRoute: "error"});
 });
 
 
 // app.use(function (err, req, res, next) {
-//     // set locals, only providing error in development
 //     res.locals.message = err.message;
-//     res.locals.error = req.app.get("env") === "development" ? err : {};
-//
-//     // render the error page
 //     res.status(err.status || 500);
 //     res.render("error");
 // });
