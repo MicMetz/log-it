@@ -22,18 +22,18 @@ app.set("views", path.join(__dirname, "/views"));
 app.set('view engine', 'ejs');
 
 // DEV DEPENDENCIES
-const livereload = require("livereload");
-const connectLivereload = require("connect-livereload");
-const open = require('open');
-const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 100);
-});
-open('http://localhost:3081');
+// const livereload = require("livereload");
+// const connectLivereload = require("connect-livereload");
+// const open = require('open');
+// const liveReloadServer = livereload.createServer();
+// liveReloadServer.server.once("connection", () => {
+//     setTimeout(() => {
+//         liveReloadServer.refresh("/");
+//     }, 100);
+// });
+// open('http://localhost:3081');
 
-app.use(connectLivereload());
+// app.use(connectLivereload());
 
 app.use(session({
     secret           : 'onTheDL',
@@ -113,16 +113,14 @@ app.search('/search/tweet', (req, res) => {});
 module.exports = app;
 
 
-// const port = process.env.PORT || 3081;
-// app.listen(port, (err) => {
-// 	// Under error circumstances log error.
-// 	if (err) {
-// 		console.log(err);
-// 		setTimeout(() => {
-// 			console.log(`App refreshed due to crash: http://localhost:${port}`);
-// 			app.refresh("/");
-// 		}, 100);
-// 	}
-// 	console.log(`http://localhost:${port}`);
-// });
-// reload(app);
+const port = process.env.PORT || 3081;
+app.listen(port, (err) => {
+	if (err) {
+		console.log(err);
+		setTimeout(() => {
+			console.log(`App refreshed due to crash: http://localhost:${port}`);
+			app.refresh("/");
+		}, 100);
+	}
+	console.log(`http://localhost:${port}`);
+});
