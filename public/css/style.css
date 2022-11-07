@@ -33,29 +33,45 @@
 }
 
 
-.search-form {
-    display         : none;
-    position        : absolute;
-    top             : 100%;
-    left            : 0;
-    right           : 0;
-    background-color: #dbeaea;
-    padding         : 1em;
-    border-radius   : 0 0 2em 2em;
-    box-shadow      : 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index         : 9999;
+
+#navlist .nav-link {
+    margin-right : 1.5em;
 }
+
+
+
+.navbar .nav-link:hover {
+    color : #ededf3;
+}
+
+
+
+.search-form {
+    display          : none;
+    position         : absolute;
+    top              : 0;
+    left             : 0;
+    right            : 0;
+    background-color : #dbeaea;
+    padding          : 1em;
+    border-radius    : 0 0 2em 2em;
+    box-shadow       : 0 0 10px rgba(0, 0, 0, 1);
+    z-index          : 1000;
+}
+
 
 
 .search-icon {
     color  : #c3cade;
     cursor : pointer;
+
 }
 
 
 
 .navbar .nav-search {
     width : content-box;
+
 }
 
 
@@ -91,27 +107,21 @@
 
 
 
-.tweet-card-inverse {
-    background-color : #c8c8e7;
-    color            : #000;
-}
-
-
 
 .tweet-card-body {
     font-size  : 1em;
     position   : relative;
     margin     : 0;
-    padding    : 1em;
-    border     : none;
-    border-top : 1px solid rgba(34, 36, 38, .1);
-    box-shadow : none;
+    padding    : 1.5em;
+    background : #fff;
+    border     : 1em solid rgba(33, 37, 41, 0.1);
+    border-top : none;
 }
 
 
 
 .tweet-card-text {
-    color      : rgba(0, 0, 0, .68);
+    color      : #000;
     clear      : both;
     margin-top : .5em;
 }
@@ -122,14 +132,16 @@
     display : block;
     width   : 100%;
     height  : auto;
+    margin  : 0 auto;
 }
 
 
 
 .tweet-card-user {
-    font-size   : 1.28571429em;
+    font-size   : 1.2850em;
     font-weight : 700;
-    line-height : 1.2857em;
+    line-height : 1.2850em;
+
 }
 
 
@@ -141,8 +153,8 @@
     left       : 0;
     max-width  : 100%;
     padding    : .75em 1em;
-    color      : rgba(0, 0, 0, .4);
-    border-top : 1px solid rgba(0, 0, 0, .05) !important;
+    color      : #000;
+    border-top : 1px solid rgba(8, 8, 8, 0.1) !important;
     background : #fff;
 }
 
@@ -150,14 +162,13 @@
 
 .tweet-card-pfp-container {
     position      : absolute;
-    top           : -12px;
+    top           : -2.5em;
     display       : inline-block;
     overflow      : hidden;
     box-sizing    : border-box;
-    width         : 25px;
-    height        : 25px;
+    width         : 5em;
+    height        : 5em;
     margin        : 0;
-    border        : 1px solid #fff;
     border-radius : 50%;
 }
 
@@ -176,6 +187,8 @@
     display        : inline-block;
     vertical-align : middle;
     top            : 0;
+    left           : 0;
+    width          : 100%;
     position       : relative;
 }
 
@@ -187,6 +200,7 @@
     margin-left    : 1em;
     vertical-align : top;
 }
+
 
 
 .tab-space {
