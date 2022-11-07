@@ -6,8 +6,9 @@
   "scripts": {
     "web": "node app.js",
     "start": "node app.js",
-    "dev": "nodemon -e js,ejs,json ./bin/www",
-    "watch": "nodemon --ext *"
+    "dev": "set NODE_ENV=development&& nodemon --watch ./bin/www localhost 3081",
+    "watch": "nodemon --ext *",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
     "node": "12.13.0"
@@ -30,6 +31,7 @@
     "debug": "^4.3.4",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.8",
+    "event-emitter": "^0.3.5",
     "express": "^4.17.1",
     "express-session": "^1.17.3",
     "http-errors": "^2.0.0",

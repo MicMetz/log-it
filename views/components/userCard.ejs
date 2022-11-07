@@ -1,0 +1,23 @@
+<% if (user.status === 'active') { %>
+    <!-- <div class="col-sm-6 col-md-4 col-lg-3 mt-4"> -->
+    <div class="tweet-card-container  card-info">
+        <img class="tweet-card-bgp" src="<%= user.bgp %>" alt="">
+        <div class="tweet-card-body">
+            <figure class="tweet-card-pfp-container">
+                <img src="<%= user.pfp %>" class="tweet-card-pfp" alt="">
+            </figure>
+            <h4 class="tweet-card-user mt-3"><%= user.username %></h4>
+            <div class="inlined tweet-card-text">
+                <a>Followers: <%= user.followers %></a>
+            </div>
+            <div class="inlined tab-space tweet-card-text">
+                <a>Following: <%= user.following %></a>
+            </div>
+        </div>
+        <div class="tweet-card-footer">
+            <small>Last updated 3 mins ago</small>
+            <button class="btn btn-info btn-sm float-right">Tweets</button>
+        </div>
+    </div>
+    <!-- </div> -->
+<% } %>

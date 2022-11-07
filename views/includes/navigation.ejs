@@ -1,25 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#283541;">
-    <% if(role  && role === "tweets") { %>
+    <% if(route && route === "tweets") { %>
         <img src="../../img/searchicon.png" class="searchicon navbar-brand" alt="searchicon">
         <form class="searchForm" name="navSearch" method="post" action="/tweets/search">
             <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a phrase or statement" aria-label="Search">
             <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
-    <% } else if(role && role === "users") { %>
+    <% } else if(route && route === "users") { %>
         <img src="../../img/searchicon.png" class="searchicon" alt="searchicon">
         <form class="searchForm" name="navSearch" method="post" action="/users/search">
             <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a username" aria-label="Search">
             <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
-    <% } else if(role && role === "trends") { %>
+    <% } else if(route && route === "trends") { %>
         <img src="../../img/searchicon.png" class="searchicon" alt="searchicon">
         <form class="searchForm" name="navSearch" method="post" action="/trends/search">
             <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a trending subject" aria-label="Search">
             <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
+    <% } else if(route === "home") { %>
+        <img src="../../img/searchicon.png" class="searchicon" alt="searchicon">
+        <form class="searchForm" name="navSearch" method="post" action="/all/search">
+            <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a phrase or statement" aria-label="Search">
+            <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
     <% } else { %>
         <img src="../../img/searchicon.png" class="searchicon" alt="searchicon">
-        <form class="searchForm" name="navSearch" method="post" action="/tweets/search">
+        <form class="searchForm" name="navSearch" method="post" action="/all/search">
             <input class="form-control-sm navSearch" type="search" name="navSearch" placeholder="Enter a phrase or statement" aria-label="Search">
             <button class="navSearchBtn btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -28,7 +34,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navlist">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="/tweets/recent">Recent</a>

@@ -1,15 +1,68 @@
-	<%- include('includes/header'); %>
-	<%- include('includes/navigation', {role: null}); %>
-	<div class = "background">
-		<div class = "container">
-			<div class = "row">
-				<div class = "col-md-12 pt-3">
-					<h1 class = "title">Log-it!</h1>
-					<h2 class = "subtitle">A Twitter web scraper</h2>
-				</div>
-			</div>
-		</div>
-	</div>
-	<%- include('includes/scripts'); %>
-	</body>
-</html>
+<%- include('includes/header'); %>
+<% switch (toRoute) {
+case 'home': %>
+<%- include('includes/navigation', {route: "home"}); %>
+<% break; %>
+<% case 'about': %>
+<%- include('includes/navigation', {route: "about"}); %>
+<% break; %>
+<% case 'contact': %>
+<%- include('includes/navigation', {route: "contact"}); %>
+<% break; %>
+<% case 'tweets': %>
+<%- include('includes/navigation', {route: "tweets"}); %>
+<% break; %>
+<% case 'users': %>
+<%- include('includes/navigation', {route: "users"}); %>
+<% break; %>
+<% } %>
+
+
+<div class="background">
+    <div class="container container-body">
+        <div class="row">
+            <div class="col-md-12 pt-3">
+                <h1 class="title">Log-it!</h1>
+                <h2 class="subtitle">A Twitter web scraper</h2>
+            </div>
+        </div>
+
+        <% if (contents.length === 0) { %>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="/search" method="POST">
+                        <div class="form-group">
+                            <label for="search">Search</label>
+                            <input type="text" class="form-control" id="search" name="search" placeholder="Enter a search term">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        <% } else { %>
+            <% if (contents.role === 'users') { %>
+                <% for (var i = 0; i < contents.length; i++) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <%= include('components/userCard', { user: contents[i] }) %>
+                        </div>
+                    </div>
+                    <hr>
+
+                <% } %>
+            <% } else if (contents.role === 'tweets') { %>
+                <% for (var i = 0; i < contents.length; i++) { %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <%= include('components/tweetCard', { tweet: contents[i] }) %>
+                        </div>
+                    </div>
+                    <hr>
+                <% } %>
+            <% } %>
+        <% } %>
+
+    </div>
+</div>
+<%- include('includes/scripts'); %>
+</body></html>

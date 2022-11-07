@@ -9,8 +9,11 @@ const logger = require("morgan");
 const session = require('express-session');
 const flash = require("connect-flash");
 const path = require("path");
-// var reload                                         = require('reload')
+// const eventEmitter = require("event-emitter");
+
+
 const {TweetQueryController, TrendQueryController} = require('./controller/scrape.controllers')
+const User = require("./modal/user.modal");
 
 require('dotenv').config()
 const app = express();
@@ -22,18 +25,19 @@ app.set("views", path.join(__dirname, "/views"));
 app.set('view engine', 'ejs');
 
 // DEV DEPENDENCIES
-// const livereload = require("livereload");
-// const connectLivereload = require("connect-livereload");
-// const open = require('open');
-// const liveReloadServer = livereload.createServer();
-// liveReloadServer.server.once("connection", () => {
-//     setTimeout(() => {
-//         liveReloadServer.refresh("/");
-//     }, 100);
-// });
-// open('http://localhost:3081');
+if (process.env.NODE_ENV === "development") {
+    console.log("Development mode");
+    const livereload = require("livereload");
+    const connectLivereload = require("connect-livereload");
+    const liveReloadServer = livereload.createServer();
+    liveReloadServer.server.once("connection", () => {
+        setTimeout(() => {
+            liveReloadServer.refresh("/");
+        }, 100);
+    });
+    app.use(connectLivereload());
+}
 
-// app.use(connectLivereload());
 
 app.use(session({
     secret           : 'onTheDL',
@@ -60,7 +64,19 @@ app.use(session({
 app.get('/', (req, res, next) => {
     var tweets = null;
     var trends = null;
-    var role = null;
+    var contents = [[], {roles: ""}];
+    var toRoute = "home";
+
+
+    const testTweet = [new User(1, "@JohnnySins", 5, "/img/derpp_640.jpg", "/img/bg1.jpg", 5, 100),
+                       new User(2, "@RoccoSiffredi", 5, "/img/faceplant_640.jpg", "/img/bg2.jpg", 5, 100),
+                       new User(3, "@MiaKhalifa", 5, "/img/human-5276040_960_720.jpg", "/img/bg3.jpg", 5, 100)
+    ];
+
+    testTweet.forEach((tweet, index = 0) => {
+        contents[index] = tweet;
+    });
+    contents.roles = "users";
 
     const testExecution = () => {
 
@@ -76,7 +92,7 @@ app.get('/', (req, res, next) => {
         console.log(trends);
     }
 
-    res.render('index', {tweets, trends, role: null});
+    res.render('index', {contents, toRoute});
     // res.render('index');
 });
 
@@ -92,7 +108,7 @@ app.get('/tweets', (req, res, next) => {
 
 
 app.use((req, res, next) => {
-    res.render('error404');
+    res.render('error404', {route: null});
 });
 
 
@@ -110,16 +126,27 @@ app.use((req, res, next) => {
 app.search('/search/tweet', (req, res) => {});
 
 
+// var emitter = new eventEmitter();
+// emitter.on('appStarted', () => {
+//     console.log(`localhost:${process.env.PORT}`);
+// });
 
 
 const port = process.env.PORT || 3081;
 app.listen(port, (err) => {
-	if (err) {
-		console.log(err);
-		setTimeout(() => {
-			console.log(`App refreshed due to crash: http://localhost:${port}`);
-			app.refresh("/");
-		}, 100);
-	}
-	console.log(`http://localhost:${port}`);
+
+    if (err) {
+        console.log(err);
+
+    } else {
+        if (process.env.NODE_ENV === "development") {
+            console.log(`http://localhost:${port}`);
+            // const open = require('open');
+            // open(`http://localhost:${port}`);
+        }
+    }
 });
+
+
+
+
