@@ -5,12 +5,12 @@
   "main": "app.js",
   "scripts": {
     "web": "node app.js",
-    "start": "node ./bin/www",
+    "start": "node app.js",
     "dev": "nodemon -e js,ejs,json ./bin/www",
     "watch": "nodemon --ext *"
   },
   "engines": {
-    "node": "12.13.x"
+    "node": "12.13.0"
   },
   "repository": {
     "type": "git",

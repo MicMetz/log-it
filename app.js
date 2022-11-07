@@ -43,18 +43,18 @@ app.use(session({
 }))
 
 
-app.use((req, res, next) => {
-    // if(req.session.user) {
-    //     app.locals.role = req.session.user.role;
-    //     next();
-    // } else {
-    //     app.locals.isLoggedIn = false;
-    //     app.locals.role = null;
-    //     next();
-    // }
-    // TODO:
-    app.locals.role = null;
-});
+// app.use((req, res, next) => {
+//     // if(req.session.user) {
+//     //     app.locals.role = req.session.user.role;
+//     //     next();
+//     // } else {
+//     //     app.locals.isLoggedIn = false;
+//     //     app.locals.role = null;
+//     //     next();
+//     // }
+//     // TODO:
+//     app.locals.role = null;
+// });
 
 
 app.get('/', (req, res, next) => {
@@ -110,7 +110,6 @@ app.use((req, res, next) => {
 app.search('/search/tweet', (req, res) => {});
 
 
-module.exports = app;
 
 
 const port = process.env.PORT || 3081;
