@@ -1,0 +1,6 @@
+.searchicon {
+    width      : 16px;
+    height     : 16px;
+    background : url(../img/searchicon.png) no-repeat;
+    display    : inline-block;
+}

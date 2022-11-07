@@ -43,9 +43,24 @@ app.use(session({
 }))
 
 
+app.use((req, res, next) => {
+    // if(req.session.user) {
+    //     app.locals.role = req.session.user.role;
+    //     next();
+    // } else {
+    //     app.locals.isLoggedIn = false;
+    //     app.locals.role = null;
+    //     next();
+    // }
+    // TODO:
+    app.locals.role = null;
+});
+
+
 app.get('/', (req, res, next) => {
     var tweets = null;
     var trends = null;
+    var role = null;
 
     const testExecution = () => {
 
@@ -61,8 +76,7 @@ app.get('/', (req, res, next) => {
         console.log(trends);
     }
 
-    res.render('index', {tweets, trends});
-
+    res.render('index', {tweets, trends, role: null});
     // res.render('index');
 });
 
