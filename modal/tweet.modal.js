@@ -3,7 +3,7 @@ const db = require('../database.js').db;
 
 
 class Tweet {
-    constructor(uid, username, created_at, likes, favoriites) {
+    constructor(uid, username, created_at, media, media_url_https, likes, favoriites) {
         this.uid = uid;
         this.username = username;
         this.created_at = created_at;

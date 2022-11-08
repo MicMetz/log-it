@@ -12,7 +12,7 @@ class TwitterScraper:
         self.keywords_or_usernames = keywords_or_usernames
         self.tweet_number = tweet_number
 
-        # setting up the the twitter API
+        # setting up the twitter API
         auth = tweepy.OAuthHandler("JjSSCoFSbnQh97VDe95DBYEQd", "3ssHOGHiO51BrrNS09IzGt95Y0ZY5kn1cvDX3DOJ7fcWlfafTK")
         auth.set_access_token("1341018559976255491-3RODUajAoWdgEqNMBQuLnqutfh4va8", "CisUExnCCq5CTQ5XUWuLYIt3NCn36rgrjsfYio6TtPSMk")
         self.api = tweepy.API(auth)
@@ -97,7 +97,7 @@ class TwitterScraper:
                 break
 
             if since is not None and until is not None:
-                if not (tweet.created_at > since and tweet.created_at < until):
+                if not (since < tweet.created_at < until):
                     continue
 
             # specify the file name and path. if the tweet was already scraped, ignore it

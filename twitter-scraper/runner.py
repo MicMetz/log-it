@@ -9,6 +9,7 @@ def main(argv):
     num_tweets = argv[4]
     options = argv[1]
     scraper = TwitterScraper(keywords, num_tweets)
+    print(scraper.twitter_scraper(options))
     print("Working...")
     return "Working"
 

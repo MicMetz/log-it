@@ -70,19 +70,23 @@ app.get('/', (req, res, next) => {
     });
     contents.roles = "users";
 
-    // const testExecution = () => {
-    //
-    //     console.log("Controller Test: getTweets - Start");
-    //     tweets = TweetQueryController.getTweets();
-    //     console.log("Controller Test: getTweets - End");
-    //
-    //     console.log("Controller Test: queryTweet - Start");
-    //     trends = TrendQueryController.getTrends();
-    //     console.log("Controller Test: queryTweet - End");
-    //
-    //     console.log(tweets);
-    //     console.log(trends);
-    // }
+    const testExecution = () => {
+
+        console.log("Controller Test: getTweets - Start");
+        tweets = TweetQueryController.getTweets();
+        console.log("Controller Test: getTweets - End");
+
+        console.log("Controller Test: queryTweet - Start");
+        trends = TrendQueryController.getTrends();
+        console.log("Controller Test: queryTweet - End");
+
+        console.log(tweets);
+        console.log(trends);
+
+        return [tweets, trends];
+    }
+
+
 
     // res.render('index', {contents, toRoute});
     res.render('index', {contents, toRoute: "home"});
