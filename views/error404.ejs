@@ -1,24 +1,5 @@
 <%- include('includes/header'); %>
-<% switch (toRoute) {
-case 'home': %>
-<%- include('includes/navigation', {route: "home"}); %>
-<% break; %>
-<% case 'about': %>
-<%- include('includes/navigation', {route: "about"}); %>
-<% break; %>
-<% case 'contact': %>
-<%- include('includes/navigation', {route: "contact"}); %>
-<% break; %>
-<% case 'tweets': %>
-<%- include('includes/navigation', {route: "tweets"}); %>
-<% break; %>
-<% case 'users': %>
-<%- include('includes/navigation', {route: "users"}); %>
-<% break; %>
-<% default: %>
-<%- include('includes/navigation', {route: null}); %>
-<% break; %>
-<% } %>
+
 <div class="background">
     <div class="container container-body">
         <div class="row">

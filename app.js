@@ -46,11 +46,11 @@ app.use(session({
     cookie           : {maxAge: 60000}
 }))
 
-
-app.use((req, res, next) => {
-    app.locals.route = "";
-    app.locals.role = null;
-});
+//
+// app.use((req, res, next) => {
+//     app.locals.route = "";
+//     app.locals.role = null;
+// });
 
 
 app.get('/', (req, res, next) => {
@@ -58,7 +58,6 @@ app.get('/', (req, res, next) => {
     var trends = null;
     var contents = [[], {role: null}];
     var toRoute = "home";
-    app.locals.route = "home";
 
 
     const testTweet = [new User(1, "@JohnnySins", 5, "/img/derpp_640.jpg", "/img/bg1.jpg", 5, 100),
@@ -66,24 +65,24 @@ app.get('/', (req, res, next) => {
                        new User(3, "@MiaKhalifa", 5, "/img/human-5276040_960_720.jpg", "/img/bg3.jpg", 5, 100)
     ];
 
-    // testTweet.forEach((tweet, index = 0) => {
-    //     contents[index] = tweet;
-    // });
-    // contents.roles = "users";
+    testTweet.forEach((tweet, index = 0) => {
+        contents[index] = tweet;
+    });
+    contents.roles = "users";
 
-    const testExecution = () => {
-
-        console.log("Controller Test: getTweets - Start");
-        tweets = TweetQueryController.getTweets();
-        console.log("Controller Test: getTweets - End");
-
-        console.log("Controller Test: queryTweet - Start");
-        trends = TrendQueryController.getTrends();
-        console.log("Controller Test: queryTweet - End");
-
-        console.log(tweets);
-        console.log(trends);
-    }
+    // const testExecution = () => {
+    //
+    //     console.log("Controller Test: getTweets - Start");
+    //     tweets = TweetQueryController.getTweets();
+    //     console.log("Controller Test: getTweets - End");
+    //
+    //     console.log("Controller Test: queryTweet - Start");
+    //     trends = TrendQueryController.getTrends();
+    //     console.log("Controller Test: queryTweet - End");
+    //
+    //     console.log(tweets);
+    //     console.log(trends);
+    // }
 
     // res.render('index', {contents, toRoute});
     res.render('index', {contents, toRoute: "home"});
@@ -103,7 +102,7 @@ app.get('/tweets', (req, res, next) => {
 
 app.use((req, res, next) => {
 
-    res.render('error404', {toRoute: "error"});
+    res.render('error404', {toRoute: "error404"});
 });
 
 
@@ -125,17 +124,10 @@ app.search('/search/tweet', (req, res) => {});
 
 const port = process.env.PORT || 3081;
 app.listen(port, (err) => {
-
     if (err) {
         console.log(err);
-
-    } else {
-        if (process.env.NODE_ENV === "development") {
-            console.log(`http://localhost:${port}`);
-            // const open = require('open');
-            // open(`http://localhost:${port}`);
-        }
     }
+    console.log(`http://localhost:${port}`);
 });
 
 
